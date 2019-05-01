@@ -1,6 +1,7 @@
 #pragma once
 #ifndef _GUI
 #include<iostream>
+#include<fstream>
 #include<windows.h>
 #include<iomanip>
 #include<string>
@@ -12,29 +13,34 @@ public:
 	~GUI();
 	void history(int col);
 	void setView(int col);
+	void readfile(string filename);
 private:
+	string nowUser;
+	fstream fp;
+	void getNowUser(int user);
 	void SetColor(int color );
-
+	wstring checker[15] = {L"  ",L"將",L"士",L"象",L"車",L"馬",L"包",L"卒"
+						,L"帥",L"仕",L"相",L"車",L"傌",L"炮",L"兵" };
 	wstring	checkerboard[19] = { 
-						L"車－馬－象－士－將－士－象－馬－車" ,
+						L"－－－－－－－－－－－－－－－－－" ,
 						L"｜　｜　｜　｜＼｜／｜　｜　｜　｜",
 						L"｜　－　－　－　－　－　－　－　｜",
 						L"｜　｜　｜　｜／｜＼｜　｜　｜　｜",
-						L"｜　包　－　－　－　－　包　－　｜",
+						L"｜　－　－　－　－　－　－　－　｜",
 						L"｜　｜　｜　｜　｜　｜　｜　｜　｜",
-						L"卒　－　卒　－　卒　－　卒　－　卒",
+						L"｜　－　－　－　－　－　－　－　｜",
 						L"｜　｜　｜　｜　｜　｜　｜　｜　｜",
 						L"｜－－－－－－－－－－－－－－－｜" ,
 						L"｜　　　　　　楚河漢界　　　　　｜" ,
 						L"｜－－－－－－－－－－－－－－－｜" ,
 						L"｜　｜　｜　｜　｜　｜　｜　｜　｜" ,
-						L"兵　－　兵　－　兵　－　兵　－　兵" ,
+						L"｜　－　－　－　－　－　－　－　｜" ,
 						L"｜　｜　｜　｜　｜　｜　｜　｜　｜" ,
-						L"｜　－　炮　－　－　－　炮　－　｜" ,
+						L"｜　－　－　－　－　－　－　－　｜" ,
 						L"｜　｜　｜　｜＼｜／｜　｜　｜　｜" ,
 						L"｜　－　－　－　－　－　－　－　｜" ,
 						L"｜　｜　｜　｜／｜＼｜　｜　｜　｜" ,
-						L"車－傌－相－士－將－士－相－傌－車"
+						L"－－－－－－－－－－－－－－－－－"
 
 	};
 	wstring teach[5] = {
