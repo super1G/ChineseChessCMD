@@ -1,50 +1,43 @@
-#include "GUI.h"
+ï»¿#include "GUI.h"
 
 
-void GUI::SetColor(int color = 7)
-{
-	HANDLE hConsole;
-	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, color);
 
-	
-
-}
 
 
 GUI::GUI()
 {
+	cout << "ä¸­æ–‡";
 	readfile("store.txt");
-	wcout.imbue(locale("chs"));//ÔO¶¨Ý”³öÖÐÎÄ
 	
+	SetConsoleOutputCP(437);
 	cout << "______________________________________________________________________________________________" << endl;
-	
-	//cout << "£ü" << setw(10) << "‘ð›rßx“ñ" << setw(10) << "£ü";
-	//<< "Ü‡£­ñR£­Ïó£­Ê¿£­Œ¢£­Ê¿£­Ïó£­ñR£­Ü‡" << endl;
+
+	//cout << "ï½œ" << setw(10) << "æˆ°æ³é¸æ“‡" << setw(10) << "ï½œ";
+	//<< "è»Šï¼é¦¬ï¼è±¡ï¼å£«ï¼å°‡ï¼å£«ï¼è±¡ï¼é¦¬ï¼è»Š" << endl;
 	for (int j = 0; j < 19; j++)
 	{
-	
-		history(j); //‘ð›r
+
+		history(j); //æˆ°æ³
 
 		SetColor(224);
-		for (int i = 0; i < checkerboard[j].size(); i++)
+		for (int i = 0; i < 35; i++)
 		{
 			if (i % 2 == 0 && j % 2 == 0)
 			{
 				int number;
 				fp >> number;
 				if (number != 0)
-					wcout << left << setw(2) << checker[number];
+					cout << left << setw(2) << checker[number];
 				else
-					wcout << left << setw(2) << checkerboard[j][i];
+					cout << left << setw(2) << checkerboard[j][i];
 			}
 			else
 			{
-				wcout <<left<< setw(2) << checkerboard[j][i];
+				cout << left << setw(2) << checkerboard[j][i];
 			}
 		}
-		SetColor();
-		
+		SetColor(7);
+
 		setView(j);
 		cout << endl;
 	}
@@ -56,10 +49,17 @@ GUI::GUI()
 	fp.close();
 
 }
+void GUI::SetColor(int color = 7)
+{
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, color);
+
+}
 void GUI::getNowUser(int user)
 {
-	
-	
+
+
 	if (user == 0)
 		nowUser = "red";
 	else if (user == 1)
@@ -67,61 +67,64 @@ void GUI::getNowUser(int user)
 }
 void GUI::history(int col)
 {
+	const unsigned char INT1 = 178;
 	if (col == 0)
 	{
-		cout << "£ü" << setw(10) << "‘ð›rßx“ñ" << setw(10) << "£ü";
+		cout << INT1;
+		cout << setw(10) << "æˆ°";
+		cout<< setw(10) << INT1;
 	}
 	else
 	{
-		cout << "£ü" << setw(18) << ""  << "£ü";
+		cout << INT1 << setw(18) << "" << INT1;
 	}
 }
 void GUI::setView(int col)
 {
-	
+
 	// ""--> store message
-	if (col == 0|| col == 7)
+	if (col == 0 || col == 7)
 	{
-		
-		cout <<left<< setw(4) << "£ü" << setw(30) << "£­£­£­£­£­£­£­£­£­£­£­£­£­£­" << setw(4) << "£ü";
-		
+
+		cout << left << setw(4) << "ï½œ" << setw(30) << "ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼" << setw(4) << "ï½œ";
+
 	}
-	else if(col>0&&col<7)
+	else if (col > 0 && col < 7)
 	{
 		if (col != 3)
 		{
-			cout << setw(4) << "£ü£ü" << setw(28) << "" << setw(4) << "£ü£ü";
+			cout << setw(4) << "ï½œï½œ" << setw(28) << "" << setw(4) << "ï½œï½œ";
 		}
 		else
 		{
 			if (nowUser.compare("red") == 0)
 			{
-				cout << setw(4) << "£ü£ü" << setw(28) << "¼t·½ƒžÏÈ" << setw(4) << "£ü£ü";
+				cout << setw(4) << "ï½œï½œ" << setw(28) << "ç´…æ–¹å„ªå…ˆ" << setw(4) << "ï½œï½œ";
 			}
 			else if (nowUser.compare("black") == 0)
 			{
-				cout << setw(4) << "£ü£ü" << setw(28) << "ºÚ·½ƒžÏÈ" << setw(4) << "£ü£ü";
+				cout << setw(4) << "ï½œï½œ" << setw(28) << "é»‘æ–¹å„ªå…ˆ" << setw(4) << "ï½œï½œ";
 			}
 			else
 			{
-				cout << setw(4) << "£ü£ü" << setw(28) << "" << setw(4) << "£ü£ü";
+				cout << setw(4) << "ï½œï½œ" << setw(28) << "" << setw(4) << "ï½œï½œ";
 			}
 		}
 	}
-	else if(col>9&& col<15)
+	else if (col > 9 && col < 15)
 	{
-		wstring a  =L"£ü";
-		
-		wcout << left<<setw(4) << a;
+		string a = "ï½œ";
 
-		wcout << setw(23) << teach[col - 10];
+		cout << left << setw(4) << a;
 
-		wcout  << a;
-		
+		cout << setw(23) << teach[col - 10];
+
+		cout << a;
+
 	}
 	else
 	{
-	cout << setw(4) << "£ü" << setw(30) << "" << setw(4) << "£ü";
+		cout << setw(4) << "ï½œ" << setw(30) << "" << setw(4) << "ï½œ";
 	}
 }
 

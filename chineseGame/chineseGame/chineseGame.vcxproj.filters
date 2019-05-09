@@ -18,10 +18,10 @@
     <ClCompile Include="main.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="GUI.cpp">
+    <ClCompile Include="key.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
-    <ClCompile Include="key.cpp">
+    <ClCompile Include="GUI.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
   </ItemGroup>
