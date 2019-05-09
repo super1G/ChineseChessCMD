@@ -1,4 +1,4 @@
-﻿#include "GUI.h"
+#include "GUI.h"
 
 
 
@@ -6,47 +6,56 @@
 
 GUI::GUI()
 {
-	cout << "中文";
+	
 	readfile("store.txt");
 	
-	SetConsoleOutputCP(437);
+	
 	cout << "______________________________________________________________________________________________" << endl;
 
-	//cout << "｜" << setw(10) << "戰況選擇" << setw(10) << "｜";
-	//<< "車－馬－象－士－將－士－象－馬－車" << endl;
 	for (int j = 0; j < 19; j++)
 	{
 
-		history(j); //戰況
+		history(j); //�Ԫp
 
 		SetColor(224);
-		for (int i = 0; i < 35; i++)
-		{
-			if (i % 2 == 0 && j % 2 == 0)
+		if(j%2==0)
+			for (int i = 0; i < 25; i++)
 			{
-				int number;
-				fp >> number;
-				if (number != 0)
-					cout << left << setw(2) << checker[number];
-				else
+				/*if (i % 2 == 0 && j % 2 == 0)
+				{
+					int number;
+					fp >> number;
+					if (number != 0)
+						cout << left << setw(3) << checker[number];
+					else
+						cout << left << setw(3) << checkerboard[j][i];
+				}
+				else*/
+				{
 					cout << left << setw(2) << checkerboard[j][i];
+				}
 			}
-			else
+		else if(j==9)
+			for (int i = 0; i < 13; i++)
 			{
 				cout << left << setw(2) << checkerboard[j][i];
 			}
-		}
+		else
+			for (int i = 0; i < 17; i++)
+			{
+				cout << left << setw(2) << checkerboard[j][i];
+			}
 		SetColor(7);
 
-		setView(j);
+		//setView(j);
 		cout << endl;
 	}
 
 	cout << "_______________________________________________________________________________________________" << endl;
-	int user;
-	if (fp >> user)
-		getNowUser(user);
-	fp.close();
+	//int user;
+	//if (fp >> user)
+	//	getNowUser(user);
+	//fp.close();
 
 }
 void GUI::SetColor(int color = 7)
@@ -67,66 +76,65 @@ void GUI::getNowUser(int user)
 }
 void GUI::history(int col)
 {
-	const unsigned char INT1 = 178;
 	if (col == 0)
 	{
-		cout << INT1;
-		cout << setw(10) << "戰";
-		cout<< setw(10) << INT1;
+		cout << "\u2588";
+		cout << setw(10) << "\u6230\u722d\u9032\u5ea6";
+		cout << setw(10) << "\u2588";
 	}
 	else
 	{
-		cout << INT1 << setw(18) << "" << INT1;
+		cout << "\u2588" << setw(18) << "" << "\u2588";
 	}
 }
-void GUI::setView(int col)
-{
-
-	// ""--> store message
-	if (col == 0 || col == 7)
-	{
-
-		cout << left << setw(4) << "｜" << setw(30) << "－－－－－－－－－－－－－－" << setw(4) << "｜";
-
-	}
-	else if (col > 0 && col < 7)
-	{
-		if (col != 3)
-		{
-			cout << setw(4) << "｜｜" << setw(28) << "" << setw(4) << "｜｜";
-		}
-		else
-		{
-			if (nowUser.compare("red") == 0)
-			{
-				cout << setw(4) << "｜｜" << setw(28) << "紅方優先" << setw(4) << "｜｜";
-			}
-			else if (nowUser.compare("black") == 0)
-			{
-				cout << setw(4) << "｜｜" << setw(28) << "黑方優先" << setw(4) << "｜｜";
-			}
-			else
-			{
-				cout << setw(4) << "｜｜" << setw(28) << "" << setw(4) << "｜｜";
-			}
-		}
-	}
-	else if (col > 9 && col < 15)
-	{
-		string a = "｜";
-
-		cout << left << setw(4) << a;
-
-		cout << setw(23) << teach[col - 10];
-
-		cout << a;
-
-	}
-	else
-	{
-		cout << setw(4) << "｜" << setw(30) << "" << setw(4) << "｜";
-	}
-}
+//void GUI::setView(int col)
+//{
+//
+//	// ""--> store message
+//	if (col == 0 || col == 7)
+//	{
+//
+//		cout << left << setw(4) << "�U" << setw(30) << "�ССССССССССССС�" << setw(4) << "�U";
+//
+//	}
+//	else if (col > 0 && col < 7)
+//	{
+//		if (col != 3)
+//		{
+//			cout << setw(4) << "�U�U" << setw(28) << "" << setw(4) << "�U�U";
+//		}
+//		else
+//		{
+//			if (nowUser.compare("red") == 0)
+//			{
+//				cout << setw(4) << "�U�U" << setw(28) << "�����u��" << setw(4) << "�U�U";
+//			}
+//			else if (nowUser.compare("black") == 0)
+//			{
+//				cout << setw(4) << "�U�U" << setw(28) << "�¤��u��" << setw(4) << "�U�U";
+//			}
+//			else
+//			{
+//				cout << setw(4) << "�U�U" << setw(28) << "" << setw(4) << "�U�U";
+//			}
+//		}
+//	}
+//	else if (col > 9 && col < 15)
+//	{
+//		string a = "�U";
+//
+//		cout << left << setw(4) << a;
+//
+//		cout << setw(23) << teach[col - 10];
+//
+//		cout << a;
+//
+//	}
+//	else
+//	{
+//		cout << setw(4) << "�U" << setw(30) << "" << setw(4) << "�U";
+//	}
+//}
 
 void GUI::readfile(string filename)
 {
